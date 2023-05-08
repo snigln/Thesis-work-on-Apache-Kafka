@@ -102,7 +102,27 @@ Here you can see the commands which are used to create, restrict access, list an
 
 `bin/kafka-topics.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --list`
 
+### List ACLs tied ot the user
 
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
+
+### Grant Write access to topic (Producer)
+
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
+
+### Grant Read access to topic (Consumer)
+
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation READ --operation DESCRIBE --topic topic-name`
+
+
+## Python Scipts
+
+There are two python scripts producer.py and consumer.py, the producer requires a user to authenticate before the script starts to produce to a topic.
+It then generates 10 messages containing a string value and a random int value.
+These messages are then segmented into two pieces with SSS and each one of the pair is sent to a different topic. This is to ensure that no user alone can reconstruct the intial messege.
+
+The consumer script requires two users to authenticate before it starts to consumer messages from the two topics, then the messages are reconstructed and read.
+The scripts however seem to fail every 3rd attempt, we do think it has something to do with the offsets of the topics not matching, but we will do further research about this.
 
 
 
