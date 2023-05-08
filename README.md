@@ -24,7 +24,7 @@ Then start the broker with `bin/kafka-server-start.sh config/server.properties`
 
 ## Generating Certificates and Trust - Keystores
 
-Please note that how the certificates and stores are generated should not be duplicated in a production envirourment!
+Please note that how the certificates and stores are generated should not be duplicated in a production environment!
 Please refer to you company policies regarding certificates.
 
 You will only need to create Key and Truststores for the Zookeeper client and the broker, since it is unable to use SASL to authenticate with it self.
@@ -32,7 +32,7 @@ Please note that whenever a name is promted, please input your hostname to avoid
 
 Download openSSL library with `sudo apt install openssl -y`
 
-The certificates and stores should be stored in a secure directory in a production envirorment but in our case we just stored in a directory in the kafka directory.
+The certificates and stores should be stored in a secure directory in a production environment but in our case we just stored in a directory in the kafka directory.
 
 ### Generate the Certificate Authority
 `openssl req -new -x509 -keyout ca-key -out ca-cert -days 3650`
@@ -61,7 +61,7 @@ You can see in our server.properties file you can see that we have a super user 
 This user is used to authenticate brokers with eachother and for interbroker communication.
 To create more users we need to refer to to this user by refering to a the `admin.properties` file, which contains the credentials and certificates that the super user use.
 
-But in a production envirorment this is not very secure, so in a production envirorment you should create a seperate admin user and add their credentials to the `admin.properties` file.
+But in a production environment this is not very secure, so in a production environment you should create a seperate admin user and add their credentials to the `admin.properties` file.
 
 But to create this seperate admin user you will need to refer to the zookeeper client.
 
