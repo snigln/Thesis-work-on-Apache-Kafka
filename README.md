@@ -104,15 +104,17 @@ Here you can see the commands which are used to create, restrict access, list an
 
 ### List ACLs tied ot the user
 
-`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=hostname:2182 --zk-tls-config-file zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
 
 ### Grant Write access to topic (Producer)
 
-`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=hostname:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation WRITE --operation DESCRIBE --operation DESCRIBECONFIGS --topic topic-name`
 
 ### Grant Read access to topic (Consumer)
 
-`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=localhost:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation READ --operation DESCRIBE --topic topic-name`
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=hostname:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation READ --operation DESCRIBE --topic topic-name`
+
+`bin/kafka-acls.sh --authorizer-properties zookeeper.connect=hostname:2182 --zk-tls-config-file config/zookeeper-client.properties --add --allow-principal User:your-user --operation READ --group your-consumer-group`
 
 
 ## Python Scipts
