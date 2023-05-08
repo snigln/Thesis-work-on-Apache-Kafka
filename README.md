@@ -57,8 +57,8 @@ This will create a `ca-key` file and a `ca-cert` file.
 
 ## Managing SASL users
 
-You can see in our server.properties file you can see that we have a super user called "kafka-admin".
-This user is used to authenticate brokers with eachother and for interbroker communication.
+You can see in our server.properties file you can see that we have a super user called "broker-admin".
+This user is used to authenticate brokers with each other and for inter-broker communication.
 To create more users we need to refer to to this user by refering to a the `admin.properties` file, which contains the credentials and certificates that the super user use.
 
 But in a production environment this is not very secure, so in a production environment you should create a seperate admin user and add their credentials to the `admin.properties` file.
