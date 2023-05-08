@@ -6,7 +6,10 @@ This will also include python producer and consumer script, these scipts will ha
 
 ## Download Apache Kafka
 
-First download the latest version of Apache Kafka using the `wget` command, download [HERE](https://dlcdn.apache.org/kafka/)
+First download the latest version of Apache Kafka using the `wget` command, download [HERE](https://dlcdn.apache.org/kafka/).
+
 Download the hash key aswell to ensure that the data is intact, this can either be a `md5` or a `sha` file.
+
 Compare the the key to the tarball with the `gpg --print-md SHA256 downloaded_file` or `gpg --print-md md5 downloaded_file` command.
+
 If they match the data is intact and you can extract the tarball with `tar -xzf downloaded_file` command
