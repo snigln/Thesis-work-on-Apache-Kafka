@@ -32,6 +32,8 @@ Please note that whenever a name is promted, please input your hostname to avoid
 
 Download openSSL library with `sudo apt install openssl -y`
 
+The certificates and stores should be stored in a secure directory in a production envirorment but in our case we just stored in a directory in the kafka directory.
+
 ### Generate the Certificate Authority
 `openssl req -new -x509 -keyout ca-key -out ca-cert -days 3650`
 This will create a `ca-key` file and a `ca-cert` file.
@@ -65,11 +67,24 @@ But to create this seperate admin user you will need to refer to the zookeeper c
 
 ### Creating a user with Super user
 
-`kafka-configs.sh --bootstrap-server hostname:9092 --command-config config/admin-properties --entity-type users --entity-name your-user --alter --add-config 'SCRAM-SHA-512=[password=your-password]'`
+`bin/kafka-configs.sh --bootstrap-server hostname:9092 --command-config config/admin-properties --entity-type users --entity-name your-user --alter --add-config 'SCRAM-SHA-512=[password=your-password]'`
 
 ### Creating a user with Zookeeper client
 
-`kafka-configs.sh --zookeeper hostname:2182 --zk-tls-config-file zookeeper-client.properties --entity-type users --entity-name kafka-admin --alter --add-config 'SCRAM-SHA-512=[password=your-password]'`
+`bin/kafka-configs.sh --zookeeper hostname:2182 --zk-tls-config-file config/zookeeper-client.properties --entity-type users --entity-name kafka-admin --alter --add-config 'SCRAM-SHA-512=[password=your-password]'`
+
+### Deleting a user
+
+`bin/kafka-configs.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --entity-type users --entity-name your-user --alter --delete-config 'SCRAM-SHA-512'`
+
+### Describe a user
+
+`bin/kafka-configs.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --entity-type users --entity-name your-user --describe`
+
+### List all users
+
+`bin/kafka-configs.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --entity-type users --describe`
+
 
 ## Managing the cluster
 
@@ -77,7 +92,15 @@ Here you can see the commands which are used to create, restrict access, list an
 
 ### Create a topic
 
-`kafka-topics.sh --bootstrap-server hostname:9092 --command-config admin.properties --create --topic topic-name`
+`bin/kafka-topics.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --create --topic topic-name`
+
+### Descirbe a topic
+
+`bin/kafka-topics.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --describe --topic topic-name`
+
+### List all topics
+
+`bin/kafka-topics.sh --bootstrap-server hostname:9092 --command-config config/admin.properties --list`
 
 
 
