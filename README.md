@@ -12,7 +12,7 @@ Download the hash key aswell to ensure that the data is intact, this can either 
 
 Compare the the key to the tarball with the `gpg --print-md SHA256 downloaded_file` or `gpg --print-md md5 downloaded_file` command.
 
-If they match the data is intact and you can extract the tarball with `tar -xzf downloaded_file` command
+If they match, that means that the data is intact and you can extract the tarball with `tar -xzf downloaded_file` command
 
 Change your working directory to the new Kafka directory with `cd`
 
