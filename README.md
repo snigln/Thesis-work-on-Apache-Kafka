@@ -1,8 +1,8 @@
 # Thesis-work-on-Apache-Kafka
 This repository is a both a guide on Apache Kafka and documentation of our thesis work on secure log management for apache kafka.
-Our thesis is work is focues on how to securely manage a Apache Kafka based data streaming service.
+Our thesis work focuses on how to securely manage a Apache Kafka based data streaming service.
 This will include authentication with SSL-SASL and authorization with Kafkas built in ACL functions.
-This will also include python producer and consumer script, these scipts will have SSS implemented aswell for segmentation and to allow two-factor authenticaiton.
+This will also include python producer and consumer script, these scipts will have SSS implemented aswell for segmentation and to allow multi-factor authenticaiton.
 
 ## Download Apache Kafka
 
