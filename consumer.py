@@ -13,30 +13,34 @@ def prnt_recv_msg(msg):
 
 def main():
     prnt_header()
+    username1 = input("First username >")
+    password1 = input("Password >")
+    username2 = input("Second username >")
+    password2 = input("Password >")
     c = Consumer({
         'bootstrap.servers':'raspberrypi:9092',
         'security.protocol':'sasl_ssl',
         'sasl.mechanism':'SCRAM-SHA-512',
-        'sasl.username':'sasl-consumer',
-        'sasl.password':'exjobb123',
+        'sasl.username':username1,
+        'sasl.password':password1,
         'group.id':'ssl-consumer',
         'ssl.ca.location':'/home/exjobb/ssl/ca-cert',
         'auto.offset.reset':'latest'
         })
 
-    c.subscribe(['my-topic'])
+    c.subscribe(['sss-topic1'])
 
     c1 = Consumer ({
         'bootstrap.servers':'raspberrypi:9092',
         'security.protocol':'sasl_ssl',
         'sasl.mechanism':'SCRAM-SHA-512',
-        'sasl.username':'sasl-consumer1',
-        'sasl.password':'exjobb123',
+        'sasl.username':username2,
+        'sasl.password':password2,
         'group.id':'sasl-consumer',
         'ssl.ca.location':'/home/exjobb/ssl/ca-cert',
         'auto.offset.reset':'latest'
         })
-    c1.subscribe(['admin-topic'])
+    c1.subscribe(['sss-topic2'])
     segments1 = []
     segments2 = []
     try:
