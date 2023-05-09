@@ -120,11 +120,11 @@ Here you can see the commands which are used to create, restrict access, list an
 ## Python Scipts
 
 There are two python scripts producer.py and consumer.py, the producer requires a user to authenticate before the script starts to produce to a topic.
-It then generates 10 messages containing a string value and a random int value.
+It then generates 2 messages containing a string value and a random int value.
 These messages are then segmented into two pieces with SSS and each one of the pair is sent to a different topic. This is to ensure that no user alone can reconstruct the intial messege.
 
-The consumer script requires two users to authenticate before it starts to consumer messages from the two topics, then the messages are reconstructed and read.
-The scripts however seem to fail every 3rd attempt, we do think it has something to do with the offsets of the topics not matching, but we will do further research about this.
+The consumer script requires two users to authenticate before it starts to consume messages from the two topics, then the messages are reconstructed and prints to the screen.
+The scripts however seem to fail every 3rd attempt, we do think it has something to do with the offsets of the messages and there beign more than one partition in the topics, but we will do further research about this.
 
 
 
