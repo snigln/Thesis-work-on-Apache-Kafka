@@ -40,6 +40,7 @@ def main():
         'ssl.ca.location':'/home/exjobb/ssl/ca-cert',
         'auto.offset.reset':'latest'
         })
+    
     c1.subscribe(['sss-topic2'])
     segments1 = []
     segments2 = []
