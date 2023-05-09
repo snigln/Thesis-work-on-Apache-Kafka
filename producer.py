@@ -19,10 +19,8 @@ def main():
         print ("{:^80}".format("Hjalmars & Mirzas exjobb"))
         print ("{:^80}".format("Basalt AB, Craton"))
         print ("Please submit username and password")
-        #username = input("Username >")
-        username = "sasl-producer"
-        #password = input("Password >")
-        password = "exjobb123"
+        username = input("Username >")
+        password = input("Password >")
         p = Producer({"bootstrap.servers":"raspberrypi:9092","security.protocol":"sasl_ssl",
 "sasl.mechanism":"SCRAM-SHA-512","sasl.username":username,"sasl.password":password,
 "ssl.ca.location":"/home/exjobb/ssl/ca-cert","acks":"-1",
@@ -30,17 +28,12 @@ def main():
         os.system("clear")
         print ("Login Success")
         print ("Producer ID:",p)
-        topics = p.list_topics()
-        print (topics.topics)
-        print ("What topic do you want to produce data to?")
-        cmd_topic = input(">")
-        #cmd_topic = "my-topic"
         for i in range(0,2):
             print(i)
             admin1_topic=[]
             admin2_topic=[]
             sid = randint (0,100)
-            msg_value = str({"Very secret data, please do not read Mr.Putin": sid})
+            msg_value = str({"Very secret data": sid})
             command = 'sss gen -n 2 -k 2 "{}"'.format(msg_value)
             cmd = os.popen(command)
             output = cmd.read()
@@ -51,11 +44,8 @@ def main():
                 print(shares)
                 if i % 2 == 0:
                     admin1_topic.append(shares[e])
-                   # p.produce(topic="my-topic", value=admin1_topic[0], on_delivery=delivery_conf)
                 else:
                     admin1_topic.append(shares[e])
-                   # p.produce(topic="admin-topic", value=admin1_topic[1], on_delivery=delivery_conf)
-
             if admin1_topic:
                 p.produce(topic="my-topic", value=admin1_topic[0], on_delivery=delivery_conf)
                 p.produce(topic="admin-topic", value=admin1_topic[1], on_delivery=delivery_conf)
