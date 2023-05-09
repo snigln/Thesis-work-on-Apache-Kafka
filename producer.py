@@ -47,8 +47,8 @@ def main():
                 else:
                     admin1_topic.append(shares[e])
             if admin1_topic:
-                p.produce(topic="my-topic", value=admin1_topic[0], on_delivery=delivery_conf)
-                p.produce(topic="admin-topic", value=admin1_topic[1], on_delivery=delivery_conf)
+                p.produce(topic="sss-topic1", value=admin1_topic[0], on_delivery=delivery_conf)
+                p.produce(topic="sss-topic2", value=admin1_topic[1], on_delivery=delivery_conf)
 
     except KeyboardInterrupt:
         print ("Exiting...")
