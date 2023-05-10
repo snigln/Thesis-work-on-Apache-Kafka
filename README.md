@@ -127,7 +127,7 @@ The consumer script requires two users to authenticate before it starts to consu
 The scripts however seem to fail every 3rd attempt, we do think it has something to do with the offsets of the messages and there beign more than one partition in the topics, but we will do further research about this.
 
 To run the scripts the Kafka Client, developed and maintained by Confluent, must first be installed. This can be done with pip:
-'pip install confluent-kafka'
+`pip install confluent-kafka`
 
 Furthermore, the scripts require the fluix implementation of Shamir's secret sharing algorithm.
-'pip3 install git+https://git.sr.ht/~fluix/sss'
+`pip3 install git+https://git.sr.ht/~fluix/sss`
